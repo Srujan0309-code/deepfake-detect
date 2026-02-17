@@ -24,7 +24,8 @@ export const CameraMode: React.FC = () => {
         formData.append('media', file);
 
         try {
-            const response = await axios.post('http://localhost:3000/api/analyze', formData);
+            const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+            const response = await axios.post(`${apiUrl}/api/analyze`, formData);
             setResult(response.data);
         } catch (error) {
             console.error("Frame analysis failed", error);
